@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPPOKRAT OPTIKA - Премиальная оптика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #d4af37;
+            --accent: #f8f8f8;
+            --text: #333;
+            --light: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--light);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span:first-child {
+            color: var(--primary);
+        }
+
+        .logo span:last-child {
+            color: var(--secondary);
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-actions a {
+            margin-left: 20px;
+            color: var(--primary);
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .header-actions a:hover {
+            color: var(--secondary);
+        }
+
+        .language-switcher {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .language-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--secondary);
+        }
+
+        .language-btn i {
+            margin-left: 5px;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--secondary);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--accent);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image i {
+            font-size: 80px;
+            color: #ddd;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--accent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--accent);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-detail i {
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 20px;
+            width: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 70px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 10px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--light);
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span>HIPPOKRAT</span>
+                <span>OPTIKA</span>
+            </a>
+
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-ru="Главная" data-az="Ana Səhifə">Главная</a></li>
+                    <li><a href="#" class="nav-link" data-ru="О нас" data-az="Haqqımızda">О нас</a></li>
+                    <li><a href="#" class="nav-link" data-ru="Продукция" data-az="Məhsullar">Продукция</a></li>
+                    <li><a href="#" class="nav-link" data-ru="Услуги" data-az="Xidmətlər">Услуги</a></li>
+                    <li><a href="#" class="nav-link" data-ru="Контакты" data-az="Əlaqə">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageToggle">
+                        <span class="lang-text">AZ</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title" data-ru="ПРЕМИАЛЬНАЯ ОПТИКА" data-az="PREMIUM OPTIKA">ПРЕМИАЛЬНАЯ ОПТИКА</h1>
+            <p class="hero-subtitle" data-ru="Современные технологии и безупречный стиль для идеального зрения"
+                data-az="Mükəmməl görmə üçün müasir texnologiyalar və qüsursuz stil">Современные технологии и
+                безупречный стиль для идеального зрения</p>
+            <a href="#" class="btn" data-ru="Открыть коллекцию" data-az="Kolleksiyanı Aç">Открыть коллекцию</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="section-title-main" data-ru="Почему выбирают нас" data-az="Niyə Bizi Seçirlər">Почему
+                    выбирают нас</h2>
+                <p class="section-title-sub"
+                    data-ru="Мы предлагаем инновационные решения для вашего зрения с акцентом на качество и стиль"
+                    data-az="Biz keyfiyyətə və stili diqqət mərkəzində saxlayaraq görməniz üçün innovativ həllər təklif edirik">
+                    Мы предлагаем инновационные решения для вашего зрения с акцентом на качество и стиль</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 data-ru="Экспертиза" data-az="Ekspertlik">Экспертиза</h3>
+                    <p data-ru="Более 20 лет опыта в области оптики и коррекции зрения"
+                        data-az="Optika və görmə korreksiyası sahəsində 20 ildən çox təcrübə">Более 20 лет опыта в
+                        области оптики и коррекции зрения</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 data-ru="Качество" data-az="Keyfiyyət">Качество</h3>
+                    <p data-ru="Используем только премиальные материалы и линзы мировых брендов"
+                        data-az="Yalnız premium materiallar və dünya markalarının linzalarından istifadə edirik">
+                        Используем только премиальные материалы и линзы мировых брендов</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-ru="Сервис" data-az="Xidmət">Сервис</h3>
+                    <p data-ru="Индивидуальный подход и полное сопровождение на всех этапах"
+                        data-az="Bütün mərhələlərdə fərdi yanaşma və tam müşayiət">Индивидуальный подход и полное
+                        сопровождение на всех этапах</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="section-title-main" data-ru="Популярные коллекции" data-az="Məşhur Kolleksiyalar">Популярные
+                    коллекции</h2>
+                <p class="section-title-sub" data-ru="Откройте для себя наши эксклюзивные оправы и линзы"
+                    data-az="Eksklüziv çərçivələrimiz və linzalarımızı kəşf edin">Откройте для себя наши эксклюзивные
+                    оправы и линзы</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-glasses"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 data-ru="Классическая коллекция" data-az="Klassik Kolleksiya">Классическая коллекция</h3>
+                        <p data-ru="Элегантные оправы для делового стиля" data-az="Biznes üslubu üçün zərif çərçivələr">
+                            Элегантные оправы для делового стиля</p>
+                        <div class="product-price"><span class="price-value">12 990</span> <span
+                                class="currency">₽</span></div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 data-ru="Солнечные очки" data-az="Günəş Eynəkləri">Солнечные очки</h3>
+                        <p data-ru="Защита от ультрафиолета с премиальным дизайном"
+                            data-az="Premium dizaynla ultrabənövşəyi qorunma">Защита от ультрафиолета с премиальным
+                            дизайном</p>
+                        <div class="product-price"><span class="price-value">9 990</span> <span
+                                class="currency">₽</span></div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 data-ru="Спортивная серия" data-az="İdman Seriyası">Спортивная серия</h3>
+                        <p data-ru="Ультралегкие и прочные оправы для активного образа жизни"
+                            data-az="Aktiv həyat tərzi üçün ultra yüngül və davamlı çərçivələr">Ультралегкие и прочные
+                            оправы для активного образа жизни</p>
+                        <div class="product-price"><span class="price-value">15 990</span> <span
+                                class="currency">₽</span></div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 data-ru="Эксклюзив" data-az="Eksklüziv">Эксклюзив</h3>
+                        <p data-ru="Ручная работа и ограниченные коллекции" data-az="Əl işi və məhdud kolleksiyalar">
+                            Ручная работа и ограниченные коллекции</p>
+                        <div class="product-price"><span class="price-value">25 990</span> <span
+                                class="currency">₽</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="HIPPOKRAT OPTIKA магазин">
+                </div>
+                <div class="about-text">
+                    <h2 data-ru="О компании HIPPOKRAT OPTIKA" data-az="HIPPOKRAT OPTIKA Şirkəti Haqqında">О компании
+                        HIPPOKRAT OPTIKA</h2>
+                    <p data-ru="HIPPOKRAT OPTIKA - это премиальный бренд оптики, который сочетает в себе передовые технологии, безупречное качество и элегантный дизайн. Мы работаем с 2001 года и за это время заслужили доверие тысяч клиентов."
+                        data-az="HIPPOKRAT OPTIKA - qabaqcıl texnologiyaları, qüsursuz keyfiyyəti və zərif dizaynı birləşdirən premium optika markasıdır. Biz 2001-ci ildən fəaliyyət göstəririk və bu müddət ərzində minlərlə müştərinin etimadını qazanmışıq.">
+                        HIPPOKRAT OPTIKA - это премиальный бренд оптики, который сочетает в себе передовые технологии,
+                        безупречное качество и элегантный дизайн. Мы работаем с 2001 года и за это время заслужили
+                        доверие тысяч клиентов.</p>
+                    <p data-ru="Наша миссия - обеспечить каждого клиента идеальным зрением и стильным аксессуаром, который подчеркивает индивидуальность. Мы сотрудничаем с ведущими мировыми производителями линз и оправ, чтобы предложить вам лучшее."
+                        data-az="Missiyamız hər bir müştəriyə mükəmməl görmə və fərdiliyi vurğulayan stil aksesuarı təmin etməkdir. Sizə ən yaxşını təklif etmək üçün aparıcı dünya linza və çərçivə istehsalçıları ilə əməkdaşlıq edirik.">
+                        Наша миссия - обеспечить каждого клиента идеальным зрением и стильным аксессуаром, который
+                        подчеркивает индивидуальность. Мы сотрудничаем с ведущими мировыми производителями линз и оправ,
+                        чтобы предложить вам лучшее.</p>
+                    <a href="#" class="btn" data-ru="Узнать больше" data-az="Daha Çox Öyrən">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="section-title-main" data-ru="Отзывы клиентов" data-az="Müştəri Rəyləri">Отзывы клиентов</h2>
+                <p class="section-title-sub" data-ru="Что говорят наши клиенты о HIPPOKRAT OPTIKA"
+                    data-az="Müştərilərimiz HIPPOKRAT OPTIKA haqqında nə deyirlər">Что говорят наши клиенты о HIPPOKRAT
+                    OPTIKA</p>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text"
+                        data-ru="Я ношу очки уже более 10 лет и никогда не встречал такого качества обслуживания и продукции. HIPPOKRAT OPTIKA - это действительно премиальный уровень!"
+                        data-az="Mən artıq 10 ildən çoxdur ki, eynək geyinirəm və heç vaxt bu qədər yüksək xidmət və məhsul keyfiyyəti ilə rastlaşmamışam. HIPPOKRAT OPTIKA həqiqətən də premium səviyyədir!">
+                        Я ношу очки уже более 10 лет и никогда не встречал такого качества обслуживания и продукции.
+                        HIPPOKRAT OPTIKA - это действительно премиальный уровень!</p>
+                    <p class="testimonial-author">- Эльдар Г.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="section-title-main" data-ru="Свяжитесь с нами" data-az="Bizimlə Əlaqə">Свяжитесь с нами</h2>
+                <p class="section-title-sub" data-ru="Мы всегда рады помочь вам с выбором и ответить на все вопросы"
+                    data-az="Seçiminizdə sizə kömək etmək və bütün suallarınızı cavablandırmaq üçün həmişə hazırıq">Мы
+                    всегда рады помочь вам с выбором и ответить на все вопросы</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-ru="Контактная информация" data-az="Əlaqə Məlumatı">Контактная информация</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-ru="ул. Низами 45, Баку, Азербайджан"
+                                data-az="Nizami küçəsi 45, Bakı, Azərbaycan">ул. Низами 45, Баку, Азербайджан</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <span>+994 12 345 67 89</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hippokrat-optika.az</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <span data-ru="Пн-Сб: 9:00 - 20:00, Вс: 10:00 - 18:00"
+                                data-az="B.e - Ş: 9:00 - 20:00, B: 10:00 - 18:00">Пн-Сб: 9:00 - 20:00, Вс: 10:00 -
+                                18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Имя" data-ru-placeholder="Имя" data-az-placeholder="Ad">
+                        <input type="email" placeholder="Email" data-ru-placeholder="Email" data-az-placeholder="Email">
+                        <input type="text" placeholder="Тема" data-ru-placeholder="Тема" data-az-placeholder="Mövzu">
+                        <textarea placeholder="Сообщение" data-ru-placeholder="Сообщение"
+                            data-az-placeholder="Mesaj"></textarea>
+                        <button type="submit" class="btn" data-ru="Отправить" data-az="Göndər">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4 data-ru="HIPPOKRAT OPTIKA" data-az="HIPPOKRAT OPTIKA">HIPPOKRAT OPTIKA</h4>
+                    <p data-ru="Премиальная оптика для безупречного зрения и стиля."
+                        data-az="Mükəmməl görmə və stil üçün premium optika.">Премиальная оптика для безупречного зрения
+                        и стиля.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-ru="Продукция" data-az="Məhsullar">Продукция</h4>
+                    <ul>
+                        <li><a href="#" data-ru="Очки для зрения" data-az="Gözlük">Очки для зрения</a></li>
+                        <li><a href="#" data-ru="Солнечные очки" data-az="Günəş Eynəkləri">Солнечные очки</a></li>
+                        <li><a href="#" data-ru="Линзы" data-az="Linzalar">Линзы</a></li>
+                        <li><a href="#" data-ru="Аксессуары" data-az="Aksesuarlar">Аксессуары</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-ru="Услуги" data-az="Xidmətlər">Услуги</h4>
+                    <ul>
+                        <li><a href="#" data-ru="Диагностика зрения" data-az="Görmə Diaqnostikası">Диагностика
+                                зрения</a></li>
+                        <li><a href="#" data-ru="Подбор очков" data-az="Eynək Seçimi">Подбор очков</a></li>
+                        <li><a href="#" data-ru="Ремонт очков" data-az="Eynək Təmiri">Ремонт очков</a></li>
+                        <li><a href="#" data-ru="Консультация" data-az="Məsləhət">Консультация</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-ru="Контакты" data-az="Əlaqə">Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-ru="ул. Низами 45, Баку"
+                                data-az="Nizami küçəsi 45, Bakı">ул. Низами 45, Баку</span></li>
+                        <li><i class="fas fa-phone"></i> +994 12 345 67 89</li>
+                        <li><i class="fas fa-envelope"></i> info@hippokrat-optika.az</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 HIPPOKRAT OPTIKA. <span data-ru="Все права защищены."
+                        data-az="Bütün hüquqlar qorunur.">Все права защищены.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const languageToggle = document.getElementById('languageToggle');
+            const langText = document.querySelector('.lang-text');
+            let currentLanguage = 'ru'; // Default language
+
+            // Prices in different currencies
+            const prices = {
+                'ru': ['12 990', '9 990', '15 990', '25 990'],
+                'az': ['25', '25', '25', '25']
+            };
+
+            // Currency symbols
+            const currencies = {
+                'ru': '₽',
+                'az': 'Manat'
+            };
+
+            // Toggle language function
+            languageToggle.addEventListener('click', function () {
+                currentLanguage = currentLanguage === 'ru' ? 'az' : 'ru';
+                updateLanguage(currentLanguage);
+            });
+
+            // Update all text elements based on selected language
+            function updateLanguage(lang) {
+                // Update button text
+                langText.textContent = lang === 'ru' ? 'AZ' : 'RU';
+
+                // Update all elements with data attributes
+                document.querySelectorAll('[data-ru]').forEach(element => {
+                    if (lang === 'ru') {
+                        if (element.hasAttribute('data-ru-placeholder')) {
+                            element.placeholder = element.getAttribute('data-ru-placeholder');
+                        } else {
+                            element.textContent = element.getAttribute('data-ru');
+                        }
+                    } else {
+                        if (element.hasAttribute('data-az-placeholder')) {
+                            element.placeholder = element.getAttribute('data-az-placeholder');
+                        } else {
+                            element.textContent = element.getAttribute('data-az');
+                        }
+                    }
+                });
+
+                // Update prices
+                const priceElements = document.querySelectorAll('.price-value');
+                priceElements.forEach((element, index) => {
+                    element.textContent = prices[lang][index];
+                });
+
+                // Update currency symbols
+                const currencyElements = document.querySelectorAll('.currency');
+                currencyElements.forEach(element => {
+                    element.textContent = currencies[lang];
+                });
+            }
+
+            // Mobile menu functionality
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav');
+
+            mobileMenu.addEventListener('click', function () {
+                nav.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
