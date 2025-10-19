@@ -176,6 +176,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 2px solid var(--secondary);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -374,6 +375,108 @@
             resize: vertical;
         }
 
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-box {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .chat-box.active {
+            display: block;
+        }
+
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #eee;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: #f1f1f1;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user {
+            background: var(--secondary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
@@ -497,6 +600,10 @@
             .header-actions {
                 display: none;
             }
+            .chat-box {
+                width: 300px;
+                right: -50px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -505,6 +612,10 @@
             }
             .section-title h2 {
                 font-size: 2rem;
+            }
+            .chat-box {
+                width: 280px;
+                right: -80px;
             }
         }
     </style>
@@ -679,20 +790,61 @@
                             <span>hippokratoptikabaku@gmail.com</span>
                         </div>
                     </div>
+                    
+                    <h3 style="margin-top: 40px;">Быстрые ссылки</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fab fa-whatsapp"></i>
+                            <span><a href="https://wa.me/994554548005" style="color: var(--text); text-decoration: none;">Написать в WhatsApp</a></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <span><a href="tel:+994554548005" style="color: var(--text); text-decoration: none;">Позвонить сейчас</a></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:hippokratoptikabaku@gmail.com" style="color: var(--text); text-decoration: none;">Написать на почту</a></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Имя" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="text" placeholder="Тема">
-                        <textarea placeholder="Сообщение" required></textarea>
-                        <button type="submit" class="btn">Отправить</button>
+                    <form id="contactForm">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="email" id="email" placeholder="Ваш email" required>
+                        <input type="text" id="subject" placeholder="Тема сообщения">
+                        <textarea id="message" placeholder="Ваше сообщение" required></textarea>
+                        <button type="submit" class="btn">ОТПРАВИТЬ СООБЩЕНИЕ</button>
                     </form>
+                    <div id="formMessage" style="margin-top: 15px; display: none;"></div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <span>Чат поддержки</span>
+                <button id="closeChat" style="background: none; border: none; color: white; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    Здравствуйте! Чем могу помочь?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Введите ваше сообщение...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -761,6 +913,88 @@
                 link.addEventListener('click', function() {
                     nav.classList.remove('active');
                 });
+            });
+
+            // Chat functionality
+            const chatButton = document.getElementById('chatButton');
+            const chatBox = document.getElementById('chatBox');
+            const closeChat = document.getElementById('closeChat');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendMessage = document.getElementById('sendMessage');
+
+            chatButton.addEventListener('click', function() {
+                chatBox.classList.toggle('active');
+            });
+
+            closeChat.addEventListener('click', function() {
+                chatBox.classList.remove('active');
+            });
+
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            sendMessage.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Auto-reply
+                    setTimeout(() => {
+                        const replies = [
+                            "Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.",
+                            "Понял ваш вопрос. Наш специалист ответит вам в рабочее время.",
+                            "Благодарим за обращение! Мы уже обрабатываем вашу заявку.",
+                            "Ваше сообщение получено. Скоро с вами свяжутся!"
+                        ];
+                        const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                        addMessage(randomReply);
+                    }, 1000);
+                }
+            });
+
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage.click();
+                }
+            });
+
+            // Contact form functionality
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                // Create mailto link
+                const mailtoLink = `mailto:hippokratoptikabaku@gmail.com?subject=Сообщение от ${encodeURIComponent(name)}: ${encodeURIComponent(subject)}&body=Имя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AСообщение:%0A${encodeURIComponent(message)}`;
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                formMessage.style.display = 'block';
+                formMessage.style.color = 'green';
+                formMessage.textContent = 'Открывается почтовый клиент... Заполните и отправьте письмо.';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
             });
         });
     </script>
